@@ -1,0 +1,204 @@
+﻿@model RoomDetail
+
+<!Doctype html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.css" />
+    <style>
+
+        /* Button styles */
+        .btn-primary {
+            margin-top: 20px;
+        }
+
+        /* Responsive grid layout */
+
+
+        .Title {
+            background-color: #b50101;
+            font-family: emoji;
+            font-weight: bold;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 268px;
+        }
+
+        #char-typed-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 300px; /* Adjust the width as needed */
+        }
+
+        .unapprove {
+            background-color: #d56a6a;
+            font-weight: bold;
+            width:150px;
+            margin-top: -2px;
+        }
+        .dataTables_info, #example_info {
+            position: absolute !important;
+            left: 12% !important;
+            top: 0;
+            font-weight: bold;
+        }
+
+        .custom-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .dt-buttons {
+            margin-right: 10px;
+        }
+
+        .dataTables_length {
+            margin-right: 10px;
+        }
+
+        .Displayliselect {
+            margin-top: 15px;
+        }
+
+        .Displayfix {
+            width: 270px;
+        }
+
+        .lines {
+            width: 100%;
+            border-bottom: ridge;
+            padding: 8px;
+            opacity: 55%;
+        }
+
+        .dt-column-order
+        {
+            color: white;
+            font-size: 16px;
+        }
+        footer{
+            display:none !important;
+        }
+    </style>
+</head>
+<body>
+
+
+@if (ViewBag.Data != null)
+{
+    <h3 class="HeadDetails">Rooms Details in Hotels</h3>
+    <table id="example" class="table" style="width:120%;">
+        <thead>
+            <tr  style="font-weight:bold; background-color: #a60f0f;color: #ffffffc7;font-size:12px">
+                @*                             <th>ModelCode<i style="font-size:16px" class="fa">&#xf0dc;</i></th>
+            *@
+            <th>#</th>
+                <th style="display:none">Booking Id</th>
+                <th>Branch Name</th>
+                <th>Room Name</th>
+                <th>Total Cost</th>
+                <th>Customer Name</th>
+                <th>PhoneNumber</th>
+                    <th>Room Status</th>
+                    <th>CheckinDate</th>
+                    <th>CheckoutDate</th>
+                    <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.Data.Count; i++)
+            {
+                var dr = ViewBag.Data[i];
+                    <tr>
+                    <td></td>
+                    <td style="display:none">@dr.BookingId</td>
+                    <td>@dr.BranchName</td>
+                    <td>@dr.TypeName</td>
+                    <td>@dr.BasePrice</td>
+                    <td>@dr.CustomerName</td>
+                    <td>@dr.PhoneNumber</td>
+                        <td>
+                            <span style="@(dr.RoomStatus =="Avaliable" ? "background-color: #10d14b; padding: 6%;font-weight: bold;" : "")">@dr.RoomStatus</span> 
+                            </td>
+                        <td>@dr.CheckinDate</td>
+                        <td>@dr.CheckoutDate</td>
+                        <td>
+
+                            @if (dr.RoomStatus == "Avaliable")
+                            {
+                                <span style="@(dr.RoomStatus =="Avaliable" ? "background-color: #10d14b; padding: 6%;font-weight: bold;" : "")">
+                                    @dr.RoomStatus
+                                </span>
+                            }
+                            else
+                            {
+                                <form onsubmit="return confirmDelete()" asp-action="CancelBooking" asp-controller="Booking" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-primary unapprove">
+                                        Cancel Booking
+                                        <input type="hidden" asp-for="BookingId" value="@dr.BookingId" />
+
+                                    </button>
+                                </form>
+                            }
+
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+
+<script>
+    function confirmDelete(url) {
+        if (confirm('Are you sure you want to Cancel this booking?')) {
+            // Programmatically submit the form to the specified URL
+            window.location.href = url;
+        }
+    }
+    var table = $('#example').DataTable({
+        pageLength: -1,  // Set default page length to "All"
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],  // Page length options
+        dom: '<"custom-toolbar"lfB>rtip',  // Custom placement of elements
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Export To Excel',
+                className: 'export-excel-button'
+            }
+        ],
+        language: {
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",  // Custom info text
+            infoEmpty: "No records available",
+            infoFiltered: "(filtered from _MAX_ total entries)"
+        },
+        order: [[7, 'asc']],  // Set initial sorting by the first data column (after row numbers)
+        columnDefs: [
+            { targets: 0, orderable: false }  // Disable sorting on the row number column
+        ],
+        drawCallback: function (settings) {
+            var api = this.api();
+            var start = api.page.info().start;
+            api.column(0, { order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = start + i + 1;  // Set the row number
+            });
+        },
+        initComplete: function () {
+            // Ensure the info text and length menu are aligned beside the button
+            $('.dataTables_length').detach().prependTo('.custom-toolbar');
+            $('.dataTables_info').detach().appendTo('.custom-toolbar');
+        }
+    });
+</script>
+</body>
+</html>

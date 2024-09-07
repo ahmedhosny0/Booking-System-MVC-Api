@@ -1,0 +1,434 @@
+﻿@model BookingRequest
+<style>
+    .selected-item {
+        display: inline-block;
+        background-color: #f1f1f1;
+        padding: 0 10px;
+        margin-right: 5px;
+        border-radius: 5px;
+    }
+
+        .selected-item .remove-item {
+            cursor: pointer;
+            color: red;
+            margin-left: 5px;
+        }
+
+    .FilterSelect[placeholder]:empty:before {
+        content: attr(placeholder);
+        color: #888;
+    }
+
+    .FilterSelect:focus {
+        outline: none;
+    }
+
+    #searchBoxRoom {
+        cursor: pointer !important;
+    }
+
+    .placeholder {
+        background-color: white;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<form onsubmit="return validateFormSubmission()" asp-action="BookRoom" method="post" id="InsertForm" class="container">
+    <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-header text-center">
+            <h3 class="mb-0">Book Your Room</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="BranchId" class="form-label">Select Branch</label>
+                        <select onchange="fetchAvailableRooms()" class="form-select" id="BranchId" asp-for="BranchId" asp-items="@(new SelectList(ViewBag.hotels, "BranchId", "BranchName"))" required>
+                            <option value="" disabled selected>Choose Branch</option>
+                        </select>
+                        <span asp-validation-message-for="BranchId" class="text-danger"></span>
+                    </div>
+                </div>
+                @* <div class="multi-select-dropdown2 Room-dropdown col-md-6">
+                    <label for="roomsDropdown" class="form-label">Rooms</label>
+                    <div class="dropdown">
+                        <div id="searchBoxRoom" contenteditable="true" class="FilterSelect form-control" placeholder="Choose Room"></div>
+                        <div id="roomsDropdown" class="dropdown-menu Roomdropdown fixed-height-dropdown" style="padding:6px;font-size:16px;min-width:620px; display: none;" aria-labelledby="dropdownMenuButton">
+                            <!-- The dynamic room checkboxes will be appeared when choose branch -->
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="selectedStores" asp-for="SelectedRooms"> *@
+                <div class="multi-select-dropdown2 Store-dropdown col-md-6">
+                    <label for="roomsDropdown" class="form-label">Rooms</label>
+                    <div class="dropdown">
+                        <div style="cursor: pointer" id="searchBoxStore" contenteditable="true" class="FilterSelect form-control" placeholder="Choose Room"></div>
+                        <div id="roomsDropdown" class="dropdown-menu Storedropdown fixed-height-dropdown" style="padding:6px;font-size:16px;min-width:620px; display: none;" aria-labelledby="dropdownMenuButton">
+                            <!-- The dynamic room checkboxes will be injected here by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" id="selectedStores" asp-for="SelectedRooms">
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="CustomerName" class="form-label">Customer Name</label>
+                        <input type="text" class="form-control" id="CustomerName" asp-for="CustomerName" placeholder="Enter your full name" required>
+                        <span asp-validation-message-for="CustomerName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="PhoneNumber" asp-for="PhoneNumber" placeholder="Enter your phone number" maxlength="14" required>
+                        <span asp-validation-message-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="CheckinDate" class="form-label">Check-in Date</label>
+                        <input type="date" class="form-control" id="CheckinDate" asp-for="CheckinDate" required>
+                        <span asp-validation-message-for="CheckinDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="CheckoutDate" class="form-label">Check-out Date</label>
+                        <input type="date" class="form-control" id="CheckoutDate" asp-for="CheckoutDate" required>
+                        <span asp-validation-message-for="CheckoutDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" id="Addbtn" class="btn btn-primary">Book Now</button>
+        </div>
+    </div>
+</form>
+
+<script>
+        let Addbtn = document.getElementById('Addbtn');
+    const CustomerName = document.getElementById('CustomerName');
+    Addbtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        var startDateInput = document.getElementById('CheckinDate');
+        var endDateInput = document.getElementById('CheckoutDate');
+        var branchSelect = document.getElementById('BranchId');
+        var RoomSelect = document.getElementById('searchBoxRoom');
+        var PhoneNumber = document.getElementById('PhoneNumber');
+        if (branchSelect.value === "") {
+            Swal.fire({
+                title: "Warning!",
+                text: "Please choose a branch before submitting the form.",
+                icon: "warning",
+                timer: 3000
+            });
+            return false;
+        }
+        var checkboxes = document.querySelectorAll('#roomsDropdown .form-check-input');
+        var isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        if (!isChecked) {
+            Swal.fire({
+                title: "Warning!",
+                text: "Please choose a Room before submitting the form.",
+                icon: "warning",
+                timer: 3000
+            });
+            return false;
+        }
+        if (!CustomerName.value) {
+            Swal.fire({
+                title: "Dear ,",
+                text: "Please fill out CustomerName field.",
+                icon: "warning",
+                timer: 4500
+            });
+            return true;
+        }
+        if (!PhoneNumber.value) {
+            Swal.fire({
+                title: "Dear ,",
+                text: "Please fill out Phonenumber field.",
+                icon: "warning",
+                timer: 4500
+            });
+            return true;
+        }
+        let phoneNumber = PhoneNumber.value.trim();
+
+        // Check if the phone number contains only numeric characters
+        if (!/^\d+$/.test(phoneNumber)) {
+            Swal.fire({
+                title: "Error",
+                text: "Phone number should contain only numeric characters.",
+                icon: "error",
+                timer: 3000
+            });
+            return true;
+        }
+
+        // Check if the phone number is not longer than 14 digits
+        if (phoneNumber.length > 11 || phoneNumber.length < 11) {
+            Swal.fire({
+                title: "Error",
+                text: "Phone number cannot exceed 11 digits.",
+                icon: "error",
+                timer: 3000
+            });
+            return true;
+        }
+        // Check if the cleaned value length is greater than 3
+        if (!startDateInput.value || !endDateInput.value) {
+            Swal.fire({
+                title: "Dear ,",
+                text: "Please fill out both date fields.",
+                icon: "warning",
+                timer: 4500
+            });
+            return true;
+        }
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+        if (startDate > endDate) {
+            Swal.fire({
+                title: "Error!",
+                text: "Start date cannot be after end date.",
+                icon: "warning",
+                timer: 3000
+            });
+            return false;
+        }
+        // First, remove existing spaces to accurately count characters
+        submitExportForm(); // Submit the export form
+    });
+    function submitExportForm() {
+        InsertForm.submit(); // Submit the export form
+        // Set up an interval to check export status periodically
+    }
+    var State = '@ViewBag.State';
+    if (State === "AddSuccess") {
+        Swal.fire({
+            title: "Good, You Make a new Booked Successfully",
+            icon: "success",
+            timer: 5500
+        });
+    }
+    // Function to initialize saving and restoring for multiple dropdowns
+    function initDropdowns(dropdownsConfig) {
+        dropdownsConfig.forEach(config => {
+            // Restore selected items on page load
+
+            // Attach event listener to save state when checkboxes change
+            document.querySelectorAll(`${config.dropdownClassName} .dropdown-menu .form-check-input`).forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    saveSelectedItems(config.dropdownClassName, config.hiddenInputId);
+                });
+            });
+        });
+    }
+
+    // Example usage
+    initDropdowns([
+        { dropdownClassName: '.multi-select-dropdown2.Store-dropdown', hiddenInputId: 'selectedStores' }
+    ]);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('form');
+
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                if (!validateRoomSelection()) {
+                    e.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
+        }
+    });
+
+    function validateRoomSelection() {
+        var checkboxes = document.querySelectorAll('#roomsDropdown .form-check-input');
+        var isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+        if (!isChecked) {
+            alert('Please select at least one room.');
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+    // Update the selected stores and labels
+    function updateSelectedStores() {
+        var storeCheckboxes = document.querySelectorAll('.Store-dropdown .form-check-input');
+        var selectedStores = [];
+        var selectedStoreLabels = [];
+
+        storeCheckboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedStores.push(checkbox.value);
+                selectedStoreLabels.push(checkbox.nextElementSibling.textContent.trim());
+            }
+        });
+
+        updateSelectedItemsDisplay(selectedStoreLabels, 'searchBoxStore', 'Choose Room');
+
+        // Update hidden field if necessary
+        var hiddenField = document.getElementById('selectedStores');
+        if (hiddenField) {
+            hiddenField.value = selectedStores.length ? selectedStores.join(',') : '';
+        }
+
+        reorderCheckboxes('.Store-dropdown');
+    }
+
+    // Update the display of selected items
+    function updateSelectedItemsDisplay(selectedLabels, containerId, placeholderText) {
+        var container = document.getElementById(containerId);
+        container.innerHTML = '';
+
+        if (selectedLabels.length > 3) {
+            var countItem = document.createElement('span');
+            countItem.className = 'selected-item';
+            countItem.textContent = selectedLabels.length + ' Selected';
+            container.appendChild(countItem);
+        } else {
+            selectedLabels.forEach(function (label) {
+                var item = document.createElement('span');
+                item.className = 'selected-item';
+                item.innerHTML = label + ' <span class="remove-item" data-label="' + label + '">x</span>';
+                container.appendChild(item);
+            });
+        }
+
+        if (selectedLabels.length === 0) {
+            container.textContent = placeholderText;
+            container.classList.add('placeholder');
+        } else {
+            container.classList.remove('placeholder');
+        }
+    }
+
+    // Reorder checkboxes based on selection
+    function reorderCheckboxes(dropdownClass) {
+        var dropdown = document.querySelector(dropdownClass + ' .dropdown-menu');
+        var formChecks = Array.from(document.querySelectorAll(dropdownClass + ' .form-check'));
+
+        formChecks.sort(function (a, b) {
+            return b.querySelector('.form-check-input').checked - a.querySelector('.form-check-input').checked;
+        });
+
+        formChecks.forEach(function (formCheck) {
+            dropdown.appendChild(formCheck);
+        });
+    }
+
+    // Toggle dropdown visibility
+    function toggleDropdown(dropdownClass, searchBoxId) {
+        var dropdownMenu = document.querySelector(dropdownClass + ' .dropdown-menu');
+        var searchBox = document.getElementById(searchBoxId);
+
+        if (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") {
+            // Populate the dropdown with fetched rooms data
+            $('#roomsDropdown').empty();
+
+            // If there are rooms fetched, add them to the dropdown
+            if (fetchedRoomsData.length > 0) {
+                $.each(fetchedRoomsData, function (index, room) {
+                    var checkboxHtml = '<div class="form-check">' +
+                        '<input class="form-check-input" type="checkbox" value="' + room.roomId + '" id="room_' + room.roomId + '">' +
+                        '<label class="form-check-label" style="padding: 0.7% 0" for="room_' + room.roomId + '">' +
+                        room.roomName +
+                        '</label>' +
+                        '</div>';
+                    $('#roomsDropdown').append(checkboxHtml);
+                });
+            } else {
+                $('#roomsDropdown').append('<div class="form-check">' +
+                    '<label class="form-check-label" style="padding: 0.7% 0" for="all0">There are no rooms available</label>' +
+                    '</div>');
+            }
+
+            dropdownMenu.style.display = "block";
+            reorderCheckboxes(dropdownClass);
+            searchBox.textContent = ''; // Clear search box
+        } else {
+            dropdownMenu.style.display = "none";
+            updateSelectedStores();
+        }
+    }
+
+    document.addEventListener('change', function (e) {
+        if (e.target.matches('.Store-dropdown .form-check-input')) {
+            updateSelectedStores();
+        }
+    });
+
+    // Toggle dropdown when clicking on the search box or selected item
+    document.addEventListener('click', function (event) {
+        var storeDropdownMenu = document.querySelector('.Store-dropdown .dropdown-menu');
+        var storeSearchBox = document.getElementById('searchBoxStore');
+
+        if (storeSearchBox.contains(event.target) || event.target.classList.contains('remove-item')) {
+            toggleDropdown('.Store-dropdown', 'searchBoxStore');
+        } else if (!storeDropdownMenu.contains(event.target)) {
+            storeDropdownMenu.style.display = 'none';
+            updateSelectedStores();
+        }
+    });
+
+    // Filter the items based on search input
+    document.addEventListener('input', function (e) {
+        if (e.target.id === 'searchBoxStore') {
+            var searchValue = e.target.textContent.toLowerCase();
+            var formChecks = document.querySelectorAll('.Store-dropdown .form-check');
+
+            formChecks.forEach(function (formCheck) {
+                var label = formCheck.querySelector('.form-check-label');
+                var labelText = label.textContent.toLowerCase();
+                formCheck.style.display = labelText.includes(searchValue) ? "" : "none";
+            });
+        }
+    });
+    var fetchedRoomsData = []; // Global variable to store fetched room data
+
+    function fetchAvailableRooms() {
+        var branchId = $('#BranchId').val();
+
+        if (branchId) {
+            $.ajax({
+                url: '/Booking/GetAvailableRoomsByBranch',
+                type: 'GET',
+                data: { branchId: branchId },
+                success: function (data) {
+                    fetchedRoomsData = data; // Store fetched data
+                    updateSelectedStores(); // Optionally update selected stores
+                },
+                error: function (error) {
+                    console.error('Error fetching rooms:', error);
+                }
+            });
+        } else {
+            fetchedRoomsData = []; // Clear stored data if no branch is selected
+            updateSelectedStores(); // Optionally update selected stores
+        }
+    }
+    // Removing selected items
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-item')) {
+            var label = e.target.getAttribute('data-label');
+            var checkboxes = document.querySelectorAll('.Store-dropdown .form-check-input');
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.nextElementSibling.textContent.trim() === label) {
+                    checkbox.checked = false;
+                }
+            });
+            updateSelectedStores();
+        }
+    });
+</script>

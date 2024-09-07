@@ -1,0 +1,22 @@
+﻿@model RoomTypeDTO
+<h2 class="text-center my-4">Define RoomType</h2>
+
+<form asp-action="DefineRoomType" method="post" class="container" style="width:50%">
+
+    <div class="form-group mb-3">
+        <label for="TypeName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="TypeName" asp-for="TypeName" placeholder="Enter Name of Room" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="BasePrice" class="form-label">Price</label>
+        <input type="text" class="form-control" id="BasePrice" asp-for="BasePrice" placeholder="Enter Price" />
+    </div>
+
+
+    <!-- Add other form fields as necessary -->
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary px-5">Define Room</button>
+    </div>
+</form>

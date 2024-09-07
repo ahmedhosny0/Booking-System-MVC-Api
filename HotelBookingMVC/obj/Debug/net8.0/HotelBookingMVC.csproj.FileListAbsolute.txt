@@ -1,0 +1,70 @@
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\appsettings.Development.json
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\appsettings.json
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.staticwebassets.runtime.json
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.exe
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.deps.json
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.runtimeconfig.json
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.dll
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.pdb
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Asp Core Projects\HotelBookingMVC\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.csproj.AssemblyReference.cache
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.GeneratedMSBuildEditorConfig.editorconfig
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.AssemblyInfoInputs.cache
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.AssemblyInfo.cs
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.csproj.CoreCompileInputs.cache
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.MvcApplicationPartsAssemblyInfo.cache
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.RazorAssemblyInfo.cache
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.RazorAssemblyInfo.cs
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets.build.json
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets.development.json
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.HotelBookingMVC.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.build.HotelBookingMVC.props
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.HotelBookingMVC.props
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.HotelBookingMVC.props
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\scopedcss\bundle\HotelBookingMVC.styles.css
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\scopedcss\projectbundle\HotelBookingMVC.bundle.scp.css
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.csproj.CopyComplete
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.dll
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\refint\HotelBookingMVC.dll
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.pdb
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.genruntimeconfig.cache
+D:\Asp Core Projects\HotelBookingMVC\obj\Debug\net8.0\ref\HotelBookingMVC.dll
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\appsettings.Development.json
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\appsettings.json
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.staticwebassets.runtime.json
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.exe
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.deps.json
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.runtimeconfig.json
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.dll
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\HotelBookingMVC.pdb
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Ahmed-AK\HotelBookingMVC\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.csproj.AssemblyReference.cache
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.AssemblyInfoInputs.cache
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.AssemblyInfo.cs
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.csproj.CoreCompileInputs.cache
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.MvcApplicationPartsAssemblyInfo.cache
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.RazorAssemblyInfo.cache
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.RazorAssemblyInfo.cs
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets.build.json
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets.development.json
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.HotelBookingMVC.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.build.HotelBookingMVC.props
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.HotelBookingMVC.props
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.HotelBookingMVC.props
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\scopedcss\bundle\HotelBookingMVC.styles.css
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\scopedcss\projectbundle\HotelBookingMVC.bundle.scp.css
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.csproj.CopyComplete
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.dll
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\refint\HotelBookingMVC.dll
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.pdb
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\HotelBookingMVC.genruntimeconfig.cache
+D:\Ahmed-AK\HotelBookingMVC\obj\Debug\net8.0\ref\HotelBookingMVC.dll
