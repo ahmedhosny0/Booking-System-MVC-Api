@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "EGjHk4vOH9y6gN5J/URBwG14wXna0SabKNuJ5vWhn1b1ab9aWRnSHcaOAcTJGR4Ntc6Ua3sBTzsYfmhgZnry/g==",
+  "dgSpecHash": "NqgJBFIHoqbWgYR+tTz6R9v3iwnZPMFkYJmZlFkVMPnVhOUuooyDpwSpvah0I7CHTzyDsEQSs8Hp+i82ehdAzg==",
   "success": true,
-  "projectFilePath": "D:\\Ahmed-AK\\HotelBookingMVC\\HotelBookingMVC.csproj",
+  "projectFilePath": "G:\\My-Git\\Booking-System-MVC-Api\\HotelBookingMVC\\HotelBookingMVC.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nagy\\.nuget\\packages\\microsoft.aspnet.webapi.client\\6.0.0\\microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",
-    "C:\\Users\\nagy\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\nagy\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
-    "C:\\Users\\nagy\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
-    "C:\\Users\\nagy\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "C:\\Users\\AK\\.nuget\\packages\\microsoft.aspnet.webapi.client\\6.0.0\\microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",
+    "C:\\Users\\AK\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\AK\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\AK\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\AK\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
   "logs": []
 }
